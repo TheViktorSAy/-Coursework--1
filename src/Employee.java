@@ -2,20 +2,22 @@ import java.util.Objects;
 
 public class Employee {
 
+    private static int idGenerator = 1;
+
     @Override
     public String toString() {
         return "Employee{" +
                 "fullName='" + fullName + '\'' +
                 ", department=" + department +
                 ", salary=" + salary +
-                //", id=" + id +
+                ", id=" + id +
                 '}';
     }
 
-    private String fullName;
+    private final String fullName;
     private int department;
     private double salary;
-    private int id;
+    private final int id;
 
     @Override
     public boolean equals(Object o) {
@@ -37,23 +39,23 @@ public class Employee {
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
+        id = idGenerator++;
     }
 
     public String getFullName() {
-        return this.fullName = fullName;
+        return this.fullName;
     }
 
     public int getDepartment() {
-        return this.department = department;
+        return this.department ;
     }
 
     public double getSalary() {
-        return this.salary = salary;
+        return this.salary;
     }
 
     public int id(int i) {
-        i++;
-        return i;
+        return id;
     }
 
     public void setDepartment(int department) {
