@@ -1,24 +1,9 @@
 public class Main {
 
-    public Employee[] employees;
 
-    public Main() {
-        employees = new Employee[10];
-        initializeEmployees();
-    }
-    public static void main(String[] args) {
-        Main main = new Main();
-        main.printEmployee();
-        System.out.println("Общая сумма затрат на заработную плату в месяц: " + main.getSumSalary());
-        System.out.println("Сотрудник с минимальной зработной платой: " + main.getEmployeeWithMinSalary());
-        System.out.println("Сотрудник с максимальной заработной платой: " + main.getEmployeeWithMaxSalary());
-        System.out.println("Средняя заработная плата в месяц: " + main.getMonthlyAverageSalary());
-        System.out.println("Список сотрудников: ");
-        main.printEmployeesFullNames();
+    public final static Employee[] employees = new Employee[10];
 
-    }
-
-    public void initializeEmployees() {
+    public static void initEmployees(){
         employees[0] = new Employee("Рогов Макар Федосеевич", 1, 15000);
         employees[1] = new Employee("Дмитриев Болеслав Семёнович", 2, 20000);
         employees[2] = new Employee("Шубин Аркадий Валентинович", 3, 30000);
@@ -31,20 +16,31 @@ public class Main {
         employees[9] = new Employee("Артемьева Илона Платоновна", 5, 56000);
     }
 
-    public void printEmployee() {
+    public static void main (String[] agrs) {
+        initEmployees();
+        printEmployee();
+        System.out.println("Общая сумма ЗП сотрудников " + getSumSalary());
+        System.out.println("Минимальная зарплата " + getEmployeeWithMinSalary());
+        System.out.println("Максимальная зарплата " + getEmployeeWithMaxSalary());
+        System.out.println("Средняя ЗП " + getMonthlyAverageSalary());
+        printEmployeesFullNames();
+    }
+
+    private static void printEmployee() {
         for (Employee employee : employees) {
             System.out.println(employee);
         }
     }
 
-    public int getSumSalary() {
+    private static int getSumSalary() {
         int sumSalary = 0;
         for (Employee employee : employees) {
             sumSalary += employee.getSalary();
         }
         return sumSalary;
     }
-    public Employee getEmployeeWithMinSalary() {
+
+    private static Employee getEmployeeWithMinSalary() {
         Employee minSalaryEmployee = employees[0];
         for (Employee employee : employees) {
             if (employee.getSalary() < minSalaryEmployee.getSalary()) {
@@ -54,7 +50,7 @@ public class Main {
         return minSalaryEmployee;
     }
 
-    public Employee getEmployeeWithMaxSalary() {
+    private static Employee getEmployeeWithMaxSalary() {
         Employee maxSalaryEmployee = employees[0];
         for (Employee employee : employees) {
             if (employee.getSalary() > maxSalaryEmployee.getSalary()) {
@@ -64,17 +60,18 @@ public class Main {
         return maxSalaryEmployee;
     }
 
-    public double getMonthlyAverageSalary() {
+    private static double getMonthlyAverageSalary() {
         double monthlyAverageSalary = getSumSalary() / employees.length;
         return monthlyAverageSalary;
     }
-    public void printEmployeesFullNames() {
-        int idCount = 1;
-        for (Employee employee : employees) {
-            System.out.printf("%d. %s%n", idCount, employee.getFullName());
-            idCount++;
 
-        }
+   private static void printEmployeesFullNames() {
+       for (Employee employee : employees) {
+           System.out.println(employee.getFullName());
+       }
+
+
+
 
     }
 }
